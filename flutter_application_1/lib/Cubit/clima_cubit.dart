@@ -5,6 +5,7 @@ import 'package:flutter_application_1/Modelo/Clima.dart';
 class ClimaCubit extends Cubit<ClimaEstado> {
   ClimaCubit() : super(ClimaEstado());
 
+<<<<<<< Updated upstream
   Future<void> cargarClima() async {
     emit(ClimaEstado(estaCargando: true));
 
@@ -25,5 +26,13 @@ class ClimaCubit extends Cubit<ClimaEstado> {
     } catch (e) {
       emit(ClimaEstado(error: "Error al cargar el clima"));
     }
+=======
+  Future<void> cargarClima(String ciudad) async {
+    emit(ClimaCargando());
+    await Future.delayed(Duration(seconds: 2)); 
+
+    
+    emit(ClimaCargado(temperatura: 22, descripcion: "Soleado en $ciudad"));
+>>>>>>> Stashed changes
   }
 }
