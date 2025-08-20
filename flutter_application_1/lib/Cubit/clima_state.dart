@@ -1,13 +1,14 @@
-import 'package:flutter_application_1/Modelo/Clima.dart';
+// cubit/clima_state.dart
+abstract class ClimaEstado {}
 
-class ClimaEstado {
-  final bool estaCargando;
-  final Clima? clima;
-  final String? error;
-
-  ClimaEstado({
-    this.estaCargando = false,
-    this.clima,
-    this.error,
-  });
+class ClimaInicial extends ClimaEstado {}
+class ClimaCargando extends ClimaEstado {}
+class ClimaCargado extends ClimaEstado {
+  final int temperatura;
+  final String descripcion;
+  ClimaCargado({required this.temperatura, required this.descripcion});
+}
+class ClimaError extends ClimaEstado {
+  final String mensaje;
+  ClimaError(this.mensaje);
 }

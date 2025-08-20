@@ -1,7 +1,9 @@
+// main.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'Cubit/clima_cubit.dart';
-import 'Presentacion/Vista_Principal.dart';
+import 'cubit/clima_cubit.dart';
+import 'bloc/noticias_bloc.dart';
+import 'vista_principal.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,15 +12,14 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ClimaCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => ClimaCubit()),
+        BlocProvider(create: (_) => NoticiasBloc()),
+      ],
       child: MaterialApp(
-        home: BlocBuilder<ClimaCubit, ClimaEstado>(
-          builder: (context, state) {
-            // ESTO SE REFRESCA CUANDO CAMBIA EL ESTADO
-            return InitialForm();
-          },
-        ),
+        title: 'Cubit + Bloc',
+        home: VistaPrincipal(),
       ),
     );
   }
